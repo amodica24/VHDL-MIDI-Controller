@@ -2,25 +2,25 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-ENTITY uart_tx is
-    GENERIC(
+entity uart_tx is
+    generic (
     -- Clock cycles = frequency of in_clk/frequency of uart
     -- frequency is 1 GHz/115200
     clk_cycles_bit : integer := 320
     );
 
-    PORT(
-        in_clk      :   in      std_logic;    -- input clock
-        tx_byte     :   in      std_logic;    -- transceiver byte data
-        tx_enable   :   in      std_logic;    -- tx enable
-        tx_active   :   out     std_logic;    -- if the transceiver is sending data
-        tx_done     :   out     std_logic;    -- transceiver is done sending data
-        tx_serial   :   out     std_logic;    -- transceiver serial
+    port(
+        in_clk      :  in    std_logic;                       -- input clock
+        tx_byte     :  in    std_logic_vector(7 downto 0);    -- transceiver byte data
+        tx_enable   :  in    std_logic;                       -- tx enable
+        tx_active   :  out   std_logic;                       -- if the transceiver is sending data
+        tx_done     :  out   std_logic;                       -- transceiver is done sending data
+        tx_serial   :  out   std_logic;                       -- transceiver serial
         tx_active
         );
     end uart_tx;
 
-    architecture RTL of UART_TX is
+    architecture RTL of uart_tx is
         type tx_process is (idle_state, tx_start, tx_data, tx_stop);
 
         signal rx_process  : tx_process := idle_state;
@@ -32,7 +32,7 @@ ENTITY uart_tx is
 
 
         begin   
-            p_UART_TX : process (in_clk)
+            p_uart_tx : process (in_clk)
             begin
                 if rising_edge(in_clk) then
                     case rx_process is
@@ -98,6 +98,6 @@ ENTITY uart_tx is
                                     end if;
                     end case;
                 end if;
-            end process p_UART_TX;
+            end process p_uart_tx;
         end RTL;
                                       
