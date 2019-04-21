@@ -7,7 +7,7 @@ entity clkDivide is
 	port(
 		clk_in  : IN STD_LOGIC;
 		clk_rst : IN STD_LOGIC; 
-		clk_out : OUT STD_LOGIC;
+		clk_out : OUT STD_LOGIC
 	);
 end clkDivide;
 
@@ -28,5 +28,5 @@ begin
 			end if;
 		end if;	
 	end process;
-	new_clk <= temp_clk;
+	clk_out <= temp_clk;
 end behav;
