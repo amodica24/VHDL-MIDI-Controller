@@ -42,6 +42,7 @@ clk_process : process
    end process;
 
 -- stimulus process
+-- test each case for the reset
 stim_proc: process
    begin
    wait for 200ns;
