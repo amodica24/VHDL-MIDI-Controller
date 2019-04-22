@@ -20,7 +20,7 @@ begin
 		if (clk_rst = '1') then -- hold the clock during reset
 			clk_count := 0;
 			temp_clk  <= '0';
-		elsif (clk'event AND clk_in = '1') then
+		elsif (clk_in'event AND clk_in = '1') then
 			clk_count := clk_count + 1;
 			if (clk_count = 1) then
 				clk_count := 0;
