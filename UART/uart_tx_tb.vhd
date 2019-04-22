@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------------
--- Project	    :     VHDL MIDI Controllers
+-- Project	    :     VHDL MIDI Controller
 -- Author  	    :     Anthony Modica, Blaine Rieger, Brian Palmigiano
 -----------------------------------------------------------------------------
 -- File		    :     uart_tx_tb.vhd
