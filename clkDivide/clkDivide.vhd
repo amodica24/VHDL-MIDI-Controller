@@ -30,12 +30,12 @@ end clkDivide;
 architecture behav of clkDivide is
 	signal temp_clk : std_logic; 
 begin
-	p1: process (clk_in, clk_rst)
+    p1: process (clk_in, clk_rst)
 	variable clk_count  : integer; -- keeps track of clock cycles
 	begin
 		if (clk_rst = '1') then -- hold the clock during reset
-			clk_count := 0;
-			temp_clk  <= '0';
+            clk_count := 0;
+            temp_clk  <= '0';
 		elsif (clk_in'event AND clk_in = '1') then
 	       -- elsif(risingedge(clk_in)) then
 			clk_count := clk_count + 1;
