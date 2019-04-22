@@ -1,3 +1,22 @@
+-----------------------------------------------------------------------------
+-- Project	    :     VHDL MIDI Controller
+-- Author  	    :     Anthony Modica, Blaine Rieger, Brian Palmigiano
+-----------------------------------------------------------------------------
+-- File		    :     uart_tx.vhd
+-- Description  :     This entity is the transmitter to send data 
+--             	      from the UART port of the FPGA to the computer
+-- 		
+-- Inputs       :     fill in these  - fill in these
+--		        :     fill in these  - fill in these
+--		        :     fill in these  - fill in these
+-- Outputs	    :     fill in these  - fill in these
+--              :     fill in these  - fill in these
+--              :     fill in these  - fill in these
+-----------------------------------------------------------------------------
+-- Version/Notes
+-- 1.0 - 2019-04-29 - Initial Version
+-----------------------------------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -10,9 +29,11 @@ entity uart_tx is
     );
 
     port(
+        -- inputs
         in_clk      :  in    std_logic;                       -- input clock
         tx_byte     :  in    std_logic_vector(7 downto 0);    -- transceiver byte data
         tx_enable   :  in    std_logic;                       -- tx enable
+        -- outputs
         tx_active   :  out   std_logic;                       -- if the transceiver is sending data
         tx_done     :  out   std_logic;                       -- transceiver is done sending data
         tx_serial   :  out   std_logic;                       -- transceiver serial
