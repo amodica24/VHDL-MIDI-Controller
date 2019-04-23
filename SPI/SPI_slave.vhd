@@ -22,11 +22,11 @@ Use work.resources.all;
 
 entity SPI_slave is
 	port(
-    -- inputs
+    		-- inputs
 		chip_select  : IN STD_LOGIC;
 		clk_in       : IN STD_LOGIC; 
-    MOSI_pin     : IN STD_LOGIC; -- master out, slave in
-    -- outputs
+   		MOSI_pin     : IN STD_LOGIC; -- master out, slave in
+    		-- outputs
 		MISO_pin     : OUT STD_LOGIC -- master in, slave out
 	);
 END SPI_slave;
