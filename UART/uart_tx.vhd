@@ -17,6 +17,7 @@
 -- 1.0 - 2019-04-29 - Initial Version
 -----------------------------------------------------------------------------
 
+--UART Transmitter
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -24,7 +25,7 @@ use ieee.numeric_std.all;
  
 entity UART_TX is
   generic (
-    g_CLKS_PER_BIT : integer := 115     -- Needs to be set correctly
+    g_CLKS_PER_BIT : integer := 320     -- (=10Mhz/31250) Needs to be set correctly
     );
   port (
     i_Clk       : in  std_logic;
@@ -40,11 +41,11 @@ end UART_TX;
 architecture RTL of UART_TX is
  
   type t_SM_Main is (s_Idle, s_TX_Start_Bit, s_TX_Data_Bits,
-                     s_TX_Stop_Bit, s_Cleanup);
+                     s_TX_Stop_Bit, s_Reset);
   signal r_SM_Main : t_SM_Main := s_Idle;
  
   signal r_Clk_Count : integer range 0 to g_CLKS_PER_BIT-1 := 0;
-  signal r_Bit_Index : integer range 0 to 7 := 0;  -- 8 Bits Total
+  signal r_Bit_Index : integer range 0 to 7 := 0;  
   signal r_TX_Data   : std_logic_vector(7 downto 0) := (others => '0');
   signal r_TX_Done   : std_logic := '0';
    
@@ -57,9 +58,10 @@ begin
          
       case r_SM_Main is
  
+        -- Idle state
         when s_Idle =>
           o_TX_Active <= '0';
-          o_TX_Serial <= '1';         -- Drive Line High for Idle
+          o_TX_Serial <= '1';         -- '1' = idle
           r_TX_Done   <= '0';
           r_Clk_Count <= 0;
           r_Bit_Index <= 0;
@@ -72,12 +74,11 @@ begin
           end if;
  
            
-        -- Send out Start Bit. Start bit = 0
+        -- Start bit state (start bit = 0)
         when s_TX_Start_Bit =>
-          o_TX_Active <= '1';
-          o_TX_Serial <= '0';
+          o_TX_Active <= '1';         -- '1' = active
+          o_TX_Serial <= '0';         -- '0' = start bit
  
-          -- Wait g_CLKS_PER_BIT-1 clock cycles for start bit to finish
           if r_Clk_Count < g_CLKS_PER_BIT-1 then
             r_Clk_Count <= r_Clk_Count + 1;
             r_SM_Main   <= s_TX_Start_Bit;
@@ -87,9 +88,9 @@ begin
           end if;
  
            
-        -- Wait g_CLKS_PER_BIT-1 clock cycles for data bits to finish          
+        -- Data bits state        
         when s_TX_Data_Bits =>
-          o_TX_Serial <= r_TX_Data(r_Bit_Index);
+          o_TX_Serial <= r_TX_Data(r_Bit_Index);   -- data bits
            
           if r_Clk_Count < g_CLKS_PER_BIT-1 then
             r_Clk_Count <= r_Clk_Count + 1;
@@ -108,23 +109,21 @@ begin
           end if;
  
  
-        -- Send out Stop bit.  Stop bit = 1
+        -- Stop bit state (stop bit = 1)
         when s_TX_Stop_Bit =>
-          o_TX_Serial <= '1';
+          o_TX_Serial <= '1';           -- '1' = stop bit
  
-          -- Wait g_CLKS_PER_BIT-1 clock cycles for Stop bit to finish
           if r_Clk_Count < g_CLKS_PER_BIT-1 then
             r_Clk_Count <= r_Clk_Count + 1;
             r_SM_Main   <= s_TX_Stop_Bit;
           else
-            r_TX_Done   <= '1';
-            r_Clk_Count <= 0;
-            r_SM_Main   <= s_Cleanup;
+            r_TX_Done   <= '1';         -- '1' = done transmitting all bits
+            r_Clk_Count <= 0;           -- '0' = reset clock count
+            r_SM_Main   <= s_Reset;
           end if;
- 
-                   
-        -- Stay here 1 clock
-        when s_Cleanup =>
+          
+        -- Reset state (1 clock)
+        when s_Reset =>
           o_TX_Active <= '0';
           r_TX_Done   <= '1';
           r_SM_Main   <= s_Idle;
