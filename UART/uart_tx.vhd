@@ -1,17 +1,17 @@
 -----------------------------------------------------------------------------
--- Project	    :     VHDL MIDI Controller
--- Author  	    :     Anthony Modica, Blaine Rieger, Brian Palmigiano
+-- Project     :     VHDL MIDI Controller
+-- Author      :     Anthony Modica, Blaine Rieger, Brian Palmigiano
 -----------------------------------------------------------------------------
--- File		    :     uart_tx.vhd
--- Description  :     This entity is the transmitter to send data 
---             	      from the UART port of the FPGA to the computer
--- 		
--- Inputs       :     fill in these  - fill in these
---		        :     fill in these  - fill in these
---		        :     fill in these  - fill in these
--- Outputs	    :     fill in these  - fill in these
---              :     fill in these  - fill in these
---              :     fill in these  - fill in these
+-- File        :     uart_tx.vhd
+-- Description :     This entity is the transmitter to send data 
+--                   from the UART port of the FPGA to the computer
+--
+-- Inputs      :     fill in these  - fill in these
+--             :     fill in these  - fill in these
+--             :     fill in these  - fill in these
+-- Outputs     :     fill in these  - fill in these
+--             :     fill in these  - fill in these
+--             :     fill in these  - fill in these
 -----------------------------------------------------------------------------
 -- Version/Notes
 -- 1.0 - 2019-04-29 - Initial Version
