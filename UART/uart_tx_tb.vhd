@@ -1,21 +1,22 @@
------------------------------------------------------------------------------
--- Project	    :     VHDL MIDI Controller
--- Author  	    :     Anthony Modica, Blaine Rieger, Brian Palmigiano
------------------------------------------------------------------------------
--- File		    :     uart_tx_tb.vhd
--- Description  :     This entity is the testbench for the transmitter that 
---                    sends data from the FPGA's UART port to the computer
--- 		
--- Inputs       :     fill in these  - fill in these
---		        :     fill in these  - fill in these
---		        :     fill in these  - fill in these
--- Outputs	    :     fill in these  - fill in these
---              :     fill in these  - fill in these
---              :     fill in these  - fill in these
------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+-- Project     :     VHDL MIDI Controller
+-- Author      :     Anthony Modica, Blaine Rieger, Brian Palmigiano
+-----------------------------------------------------------------------------------
+-- File        :     uart_tx.vhd
+-- Description :     This entity is the testbench that is used to test both the 
+--                   uart_tx and uart_rx codes
+--
+-- Inputs      :     i_Clk          - input clock
+--             :     i_TX_DV        - transmit enable bit
+--             :     i_TX_Byte      - the 8 bits being transmitted
+-- Outputs     :     o_TX_Active    - bit for detecting bits are being transmitted
+--             :     o_TX_Serial    - start bit
+--             :     o_TX_Done      - bit detects when done transmitting
+-----------------------------------------------------------------------------------
 -- Version/Notes
 -- 1.0 - 2019-04-29 - Initial Version
------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.ALL;
 use ieee.numeric_std.all;
@@ -30,9 +31,11 @@ architecture behave of uart_tb is
       g_CLKS_PER_BIT : integer := 115   -- Needs to be set correctly
       );
     port (
+      -- inputs
       i_clk       : in  std_logic;
       i_tx_dv     : in  std_logic;
       i_tx_byte   : in  std_logic_vector(7 downto 0);
+      -- outputs
       o_tx_active : out std_logic;
       o_tx_serial : out std_logic;
       o_tx_done   : out std_logic
@@ -138,15 +141,6 @@ begin
     wait until rising_edge(r_CLOCK);
     UART_WRITE_BYTE(X"3F", r_RX_SERIAL);
     wait until rising_edge(r_CLOCK);
- 
-    -- Check that the correct command was received
-    if w_RX_BYTE = X"3F" then
-      report "Test Passed - Correct Byte Received" severity note;
-    else
-      report "Test Failed - Incorrect Byte Received" severity note;
-    end if;
- 
-    assert false report "Tests Complete" severity failure;
      
   end process;
    
