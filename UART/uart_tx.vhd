@@ -17,8 +17,6 @@
 -- 1.0 - 2019-04-29 - Initial Version
 -----------------------------------------------------------------------------------
 
---UART Transmitter
-
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
