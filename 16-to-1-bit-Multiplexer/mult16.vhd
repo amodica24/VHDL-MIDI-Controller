@@ -9,7 +9,7 @@
 --                  :     b
 --                  :     c
 --                  :     d
---                  :     e1
+--                  :     e
 --                  :     f
 --                  :     g
 --                  :     h
@@ -23,6 +23,7 @@
 --                  :     sel     
 
 -- Outputs	    :     new_clk_s - Output clock
+--		    :     q
 -----------------------------------------------------------------------------
 -- Version/Notes
 -- 1.0 - 2019-04-29 - Initial Version
@@ -41,7 +42,7 @@ ENTITY mult16 is
 		b   : IN STD_LOGIC;
 		c   : IN STD_LOGIC; 
 		d   : IN STD_LOGIC;
-		e1  : IN STD_LOGIC; 
+		e  : IN STD_LOGIC; 
 		f   : IN STD_LOGIC;
 		g   : IN STD_LOGIC; 
 		h   : IN STD_LOGIC;
@@ -53,15 +54,15 @@ ENTITY mult16 is
 		n   : IN STD_LOGIC;
 		o   : IN STD_LOGIC; 
 		p   : IN STD_LOGIC;
-
 		sel : IN STD_LOGIC;
 		
 		q   : OUT STD_LOGIC
 	);
+
 END mult16;
 ARCHITECTURE behav OF mult16 IS
 BEGIN
-	mult_process : PROCESS (a,b,c,d, sel)
+	mult_process : PROCESS (a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,sel)
 	BEGIN 
 		case sel is
 			when "0000" => q <= a;
