@@ -2,7 +2,7 @@
 -- Project     :     VHDL MIDI Controller
 -- Author      :     Anthony Modica, Blaine Rieger, Brian Palmigiano
 -----------------------------------------------------------------------------------
--- File        :     uart_tx.vhd
+-- File        :     uart_tb.vhd
 -- Description :     This entity is the testbench that is used to test both the 
 --                   uart_tx and uart_rx codes
 --
