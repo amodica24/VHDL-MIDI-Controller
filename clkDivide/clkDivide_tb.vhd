@@ -31,11 +31,10 @@ port(
 end component;
 
 -- inputs
-signal clk_in  : std_logic := '0';
-signal clk_rst : std_logic := '0';
-
+signal clk_in_s   : std_logic;
+signal clk_rst_s  : std_logic;
 -- outputs
-signal new_clk : std_logic;
+signal new_clk_s :  std_logic;
 
 -- clock period
 constant clk_period : time := 10 ns; -- insert the clk period being used
@@ -61,10 +60,10 @@ clk_process : process
 -- test each case for the reset
 stim_proc: process
    begin
-   wait for 200ns;
-   clk_rst_s <= '1';
-   wait for 200ns;
-   clk_rst_s <= '0';
-end process
+   clk_rst_s <= '1'; 
+    wait for clk_period; 
+    clk_rst_s <= '0'; 
+    wait; 
+   end process;
 
 end;
