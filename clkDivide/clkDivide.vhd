@@ -17,7 +17,7 @@
 Library IEEE;
 Use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.numeric_std.ALL;
-Use work.resources.all;
+--Use work.resources.all;
 
 entity clkDivide is
 	port(
@@ -32,16 +32,22 @@ architecture behav of clkDivide is
 begin
     p1: process (clk_in, clk_rst)
 	variable clk_count  : integer; -- keeps track of clock cycles
+	variable div_value  : integer; 
+	
+	
 	begin
+	-- 100 MHz / 100 = 1 MHz 
+	div_value := 100; -- divider for ADC sample rate of 62.5 ksps 
+	
 		if (clk_rst = '1') then -- hold the clock during reset
             clk_count := 0;
             temp_clk  <= '0';
 		elsif (clk_in'event AND clk_in = '1') then
 	       -- elsif(risingedge(clk_in)) then
 			clk_count := clk_count + 1;
-			if (clk_count = 1) then
+			if (clk_count = div_value) then
 				clk_count := 0;
-				temp <= NOT temp;
+				temp_clk <= NOT temp_clk;
 			end if;
 		end if;	
 	end process;
