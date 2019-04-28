@@ -4,7 +4,7 @@
 -----------------------------------------------------------------------------
 -- File         :     SPI_slave.vhd
 -- Description  :     This entity is the SPI slave component
---             	      that will interact with the FPGA 
+--                    that will interact with the FPGA 
 --
 -- Inputs       :     clk_in       - Input for the clock
 --              :     chip_select  - Reset for the clock
