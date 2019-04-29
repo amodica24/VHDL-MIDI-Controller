@@ -7,11 +7,13 @@
 --
 -- Inputs           :     d_in
 --                  :     sel     
+
 -- Outputs          :     
 --                  :     d_out
 -----------------------------------------------------------------------------
 -- Version/Notes
--- 1.0 - 2019-04-29 - Initial Version
+-- 1.0 - 2019-04-20 - Initial Version
+-- 1.1 - 2019-04-27 - Changed from 16 inputs to 1 input with 16 bit logic vector
 -----------------------------------------------------------------------------
 
 Library IEEE;
