@@ -1,19 +1,20 @@
 -----------------------------------------------------------------------------
--- Project	    :     VHDL MIDI Controller
--- Author  	    :     Anthony Modica, Blaine Rieger, Brian Palmigiano
+-- Project          :     VHDL MIDI Controller
+-- Author           :     Anthony Modica, Blaine Rieger, Brian Palmigiano
 -----------------------------------------------------------------------------
--- File		    :     mult16.vhd
--- Description  :     This entity is a 16-1 multiplexer
--- 		
--- Inputs       :     a
---              :     sel     
+-- File             :     mult16.vhd
+-- Description      :     This entity is a 16-1 multiplexer
+--
+-- Inputs           :     a
+--                  :     sel     
 
--- Outputs      :     
---		        :     q
+-- Outputs          :     
+--                  :     q
 -----------------------------------------------------------------------------
 -- Version/Notes
 -- 1.0 - 2019-04-29 - Initial Version
 -----------------------------------------------------------------------------
+
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
