@@ -1,29 +1,15 @@
 -----------------------------------------------------------------------------
--- Project	    :     VHDL MIDI Controller
--- Author  	    :     Anthony Modica, Blaine Rieger, Brian Palmigiano
+-- Project          :     VHDL MIDI Controller
+-- Author           :     Anthony Modica, Blaine Rieger, Brian Palmigiano
 -----------------------------------------------------------------------------
--- File		    :     mult16.vhd
+-- File             :     mult16.vhd
 -- Description      :     This entity is a 16-1 multiplexer
--- 		
+--
 -- Inputs           :     a
---                  :     b
---                  :     c
---                  :     d
---                  :     e
---                  :     f
---                  :     g
---                  :     h
---                  :     i
---                  :     j
---                  :     k
---                  :     l
---                  :     m
---                  :     n
---                  :     o
 --                  :     sel     
 
--- Outputs	    :     new_clk_s - Output clock
---		    :     q
+-- Outputs          :     
+--                  :     q
 -----------------------------------------------------------------------------
 -- Version/Notes
 -- 1.0 - 2019-04-29 - Initial Version
@@ -34,50 +20,36 @@ Use IEEE.STD_LOGIC_1164.ALL;
 
 ENTITY mult16 is
 	PORT(
-		a   : IN STD_LOGIC; 
-		b   : IN STD_LOGIC;
-		c   : IN STD_LOGIC; 
-		d   : IN STD_LOGIC;
-		e1  : IN STD_LOGIC; 
-		f   : IN STD_LOGIC;
-		g   : IN STD_LOGIC; 
-		h   : IN STD_LOGIC;
-		i   : IN STD_LOGIC; 
-		j   : IN STD_LOGIC;
-		k   : IN STD_LOGIC; 
-		l   : IN STD_LOGIC;
-		m   : IN STD_LOGIC; 
-		n   : IN STD_LOGIC;
-		o   : IN STD_LOGIC; 
-		p   : IN STD_LOGIC;
+		a   : IN STD_LOGIC_VECTOR(15 downto 0); 
         sel : in std_logic_vector(3 downto 0);
 		
 		q   : OUT STD_LOGIC
 	);
 
 END mult16;
-ARCHITECTURE behav OF mult16 IS
+ARCHITECTURE rtl OF mult16 IS
 BEGIN
- mult_process : PROCESS (a,b,c,d,e1,f,g,h,i,j,k,l,m,n,o,p,sel)
+ mult_process : PROCESS (a,sel)
  BEGIN 
   case sel is
-   when "0000" => q <= a;
-   when "0001" => q <= b;
-   when "0010" => q <= c;
-   when "0011" => q <= d;
-   when "0100" => q <= e1;
-   when "0101" => q <= f;
-   when "0110" => q <= g;
-   when "0111" => q <= h;
-   when "1000" => q <= i;
-   when "1001" => q <= j;
-   when "1010" => q <= k;
-   when "1011" => q <= l;
-   when "1100" => q <= m;
-   when "1101" => q <= n;
-   when "1110" => q <= o;
-   when "1111" => q <= p;
+   when "0000" => q <= a(0);
+   when "0001" => q <= a(1);
+   when "0010" => q <= a(2);
+   when "0011" => q <= a(3);
+   when "0100" => q <= a(4);
+   when "0101" => q <= a(5);
+   when "0110" => q <= a(6);
+   when "0111" => q <= a(7);
+   when "1000" => q <= a(8);
+   when "1001" => q <= a(9);
+   when "1010" => q <= a(10);
+   when "1011" => q <= a(11);
+   when "1100" => q <= a(12);
+   when "1101" => q <= a(13);
+   when "1110" => q <= a(14);
+   when "1111" => q <= a(15);
+
    when others => q <= 'X';
    end case;
    end process mult_process;
-end behav;
+end rtl;
