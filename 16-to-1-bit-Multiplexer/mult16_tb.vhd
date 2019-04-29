@@ -5,11 +5,11 @@
 -- File             :     mult16.vhd
 -- Description      :     This entity is a 16-1 multiplexer
 --
--- Inputs           :     a
+-- Inputs           :     d_in
 --                  :     sel     
 
 -- Outputs          :     
---                  :     q
+--                  :     d_out
 -----------------------------------------------------------------------------
 -- Version/Notes
 -- 1.0 - 2019-04-29 - Initial Version
@@ -25,38 +25,39 @@ ARCHITECTURE rtl OF mult16_tb IS
     -- Component Declaration for the Unit Under Test (UUT)
     COMPONENT mult16
     PORT(
-    a   : IN std_logic_vector(15 downto 0);
-    sel : in std_logic_vector(3 downto 0);
-    
-    q : OUT std_logic
+	-- inputs
+    d_in   : in std_logic_vector(15 downto 0);
+    sel    : in std_logic_vector(3 downto 0);
+    -- outputs
+    d_out : out std_logic
     );
     END COMPONENT;
     --Inputs
-    signal a_sig : std_logic_vector(15 downto 0);
-    signal sel_sig : std_logic_vector(3 downto 0);
+    signal d_in_s : std_logic_vector(15 downto 0);
+    signal sel_s : std_logic_vector(3 downto 0);
     --Outputs
-    signal q_sig : std_logic;
+    signal d_out_s : std_logic;
 BEGIN
     -- Instantiate the Unit Under Test (UUT)
   uut: mult16 PORT MAP (
-    a => a_sig,
-    sel => sel_sig,
-    q => q_sig
+    d_in => d_in_s,
+    sel => sel_s,
+    d_out => d_out_s
    );
 -- Stimulus process
 stim_proc: process
  begin
-  a_sig <= "0000000000000000";
-  sel_sig <= "0000";
+  d_in_s <= "0000000000000000";
+  sel_s <= "0000";
   wait for 40 ns;
-  a_sig <= "0000000000000010";
-  sel_sig <= "0001"; 
+  d_in_s <= "0000000000000010";
+  sel_s <= "0001"; 
   wait for 20 ns;
-  a_sig <= "0000000000000000";
-  sel_sig <= "0001"; 
+  d_in_s <= "0000000000000000";
+  sel_s <= "0001"; 
   wait for 40 ns;
-  a_sig <= "1000000000000010";
-  sel_sig <= "1111";  
+  d_in_s <= "1000000000000010";
+  sel_s <= "1111";  
   wait for 30 ns; 
   wait;
   end process;
