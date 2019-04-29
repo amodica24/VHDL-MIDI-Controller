@@ -20,15 +20,15 @@ Use IEEE.STD_LOGIC_1164.ALL;
 
 ENTITY mult16 is
   PORT(
-    a : IN STD_LOGIC_VECTOR(15 downto 0); 
+    a   : out std_logic_vector(15 downto 0); 
     sel : in std_logic_vector(3 downto 0);
-    q   : OUT STD_LOGIC
+    q   : out std_logic
   );
   END mult16;
   
-  ARCHITECTURE rtl OF mult16 IS
+  ARCHITECTURE rtl OF mult16 is
     BEGIN
-      mult_process : PROCESS (a,sel)
+      mult_process : process(a,sel)
     BEGIN 
       case sel is
        when "0000" => q <= a(0);
