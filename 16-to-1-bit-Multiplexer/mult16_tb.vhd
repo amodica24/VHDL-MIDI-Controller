@@ -12,9 +12,10 @@
 --                  :     d_out
 -----------------------------------------------------------------------------
 -- Version/Notes
--- 1.0 - 2019-04-29 - Initial Version
+-- 1.0 - 2019-04-20 - Initial Version
+-- 1.1 - 2019-04-27 - Changed from 16 inputs to 1 input with 16 bit logic vector
+-- 1.2 - 2019-04-28 - Inserted assert statements
 -----------------------------------------------------------------------------
-
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
@@ -49,16 +50,28 @@ stim_proc: process
  begin
   d_in_s <= "0000000000000000";
   sel_s <= "0000";
-  wait for 40 ns;
+  
+  wait for 5ns;
+  assert (d_out_s = '0') report "Output is a 0" severity failure;
+  wait for 35ns;
+  
   d_in_s <= "0000000000000010";
   sel_s <= "0001"; 
-  wait for 20 ns;
+  wait for 5ns;
+  assert (d_out_s = '1') report "Output is a 1" severity failure;
+  wait for 50ns;
+  
   d_in_s <= "0000000000000000";
   sel_s <= "0001"; 
-  wait for 40 ns;
+  wait for 5ns;
+  assert (d_out_s = '0') report "Output is a 0" severity failure;
+  wait for 35ns;
+  
   d_in_s <= "1000000000000010";
-  sel_s <= "1111";  
-  wait for 30 ns; 
-  wait;
+  sel_s <= "1111";
+  wait for 5ns;
+  assert (d_out_s = '1') report "Output is a 1" severity failure;
+  wait for 35 ns;
+   
   end process;
 END;
