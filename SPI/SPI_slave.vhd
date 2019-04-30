@@ -7,7 +7,7 @@
 --                    that will interact with the FPGA 
 --
 -- Inputs       :     clk_in       - Input for the clock
---              :     chip_select  - Reset for the clock
+--              :     slave_select
 --              :     d_in         - data input
 --              :     MOSI_pin     - Pin to select master out, slave in
 -- Outputs      :     MISO_pin     - Pin to select master in, slave out
@@ -25,7 +25,7 @@ Use work.resources.all;
 entity SPI_slave is
 	port(
     		-- inputs
-		chip_select  : IN STD_LOGIC;
+		slave_select : IN STD_LOGIC;
 		clk_in       : IN STD_LOGIC; 
    		MOSI_pin     : IN STD_LOGIC; -- master out, slave in
 		d_in         : IN STD_LOGIC_VECTOR(7 downto 0); 
@@ -34,3 +34,10 @@ entity SPI_slave is
 		d_out        : OUT STD_LOGIC_VECTOR(7 downto 0)
 	);
 END SPI_slave;
+  
+  BEGIN
+    
+    if (slave_select = '0')
+      -- slave select must remain low until transmission is complete
+      
+      -- if high, SPI slave forced to IDLE state
