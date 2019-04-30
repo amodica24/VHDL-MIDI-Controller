@@ -2,14 +2,14 @@
 -- Project     :     VHDL MIDI Controller
 -- Author      :     Anthony Modica, Blaine Rieger, Brian Palmigiano
 -----------------------------------------------------------------------------------
--- File        :     uart_tx.vhd
+-- File        :     uart_rx.vhd
 -- Description :     This entity is the receiver that receives the message 
 --                   being transmitted from the UART port of the FPGA
 --
--- Inputs      :     clk_in          - clock
+-- Inputs      :     clk_in       - clock
 --             :     tx_enable    - transmit enable bit
--- Outputs     :     tx_detect        - bit for detecting bits are being transmitted
---             :     rx_start      - start bit
+-- Outputs     :     tx_detect    - bit for detecting bits are being transmitted
+--             :     rx_start     - start bit
 -----------------------------------------------------------------------------------
 -- Version/Notes
 -- 1.0 - 2019-04-29 - Initial Version
