@@ -15,6 +15,7 @@
 -- 1.0 - 2019-04-20 - Initial Version
 -- 1.1 - 2019-04-27 - Changed from 16 inputs to 1 input with 16 bit logic vector
 -- 1.2 - 2019-04-28 - Inserted assert statements
+-- 1.3 - 2019-04-29 - Implemented more test cases
 -----------------------------------------------------------------------------
 
 LIBRARY ieee;
