@@ -24,20 +24,24 @@ Use work.resources.all;
 
 entity SPI_slave is
 	port(
-    		-- inputs
+    -- inputs
 		slave_select : IN STD_LOGIC;
 		clk_in       : IN STD_LOGIC; 
-   		MOSI_pin     : IN STD_LOGIC; -- master out, slave in
+    MOSI_pin     : IN STD_LOGIC; -- master out, slave in
 		d_in         : IN STD_LOGIC_VECTOR(7 downto 0); 
-    		-- outputs
+    -- outputs
 		MISO_pin     : OUT STD_LOGIC; -- master in, slave out
 		d_out        : OUT STD_LOGIC_VECTOR(7 downto 0)
 	);
 END SPI_slave;
   
   BEGIN
-    
-    if (slave_select = '0')
-      -- slave select must remain low until transmission is complete
-      
-      -- if high, SPI slave forced to IDLE state
+		process_SPI(clk_in)
+		begin
+			if falling_edge(clk_in) then
+				if (slave_select = '0') then
+        -- slave select must remain low until transmission is complete
+        end if;
+        -- if high, SPI slave forced to IDLE state
+			end if;
+		end process;
