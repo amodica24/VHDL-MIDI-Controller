@@ -79,10 +79,11 @@ begin
     wait until rising_edge(clk_in_s);
     wait until rising_edge(clk_in_s);
     tx_enable_s   <= '1';
-    tx_data <= X"AB";
+    tx_data <= X"FF";
     wait until rising_edge(clk_in_s);
     tx_enable_s   <= '0';
     wait until tx_done_s = '1';
+    wait;
      
   end process;
    
