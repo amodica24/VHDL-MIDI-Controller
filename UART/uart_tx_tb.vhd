@@ -1,7 +1,7 @@
-  -----------------------------------------------------------------------------------
+  -------------------------------------------------------------------------------------
 -- Project     :     VHDL MIDI Controller
 -- Author      :     Anthony Modica, Blaine Rieger, Brian Palmigiano
--------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
 -- File        :     uart_tx_tb.vhd
 -- Description :     This entity is the transmitter to send data 
 --                   from the UART port of the FPGA to the computer
@@ -14,7 +14,7 @@
 --             :     tx_out        - The 8 bit message received from the transmitter 
 --             :                     1 bit at a time
 --             :     tx_done       - Bit detects when done transmitting
--------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
 -- Version/Notes
 -- 1.0 - 2019-04-18 - Initial Version
 -- 1.1 - 2019-04-21 - Idle state needed reworking, the testbench
@@ -22,7 +22,8 @@
 -- 1.2 - 2019-04-24 - Fixed the number of clocks per bit to reflect the frequency
 --                    of the FPGA
 -- 1.3 - 2019-04-25 - Added more testbenches and asserts for simulation
--------------------------------------------------------------------------------------
+-- 1.3 - 2019-04-29 - Included an output to show when the 8 bits are being transmitted
+---------------------------------------------------------------------------------------
 
 library ieee;
 use ieee.std_logic_1164.ALL;
@@ -43,7 +44,8 @@ component uart_tx is
     tx_enable  : in  std_logic;
     tx_in      : in  std_logic_vector(7 downto 0);
     -- outputs;
-    tx_busy    : out  std_logic;
+    tx_busy    : out std_logic;
+    tx_8bit    : out std_logic;
     tx_out     : out std_logic;
     tx_done    : out std_logic
     );
@@ -64,6 +66,7 @@ signal tx_enable_s  : std_logic                    := '0';
 signal tx_in_s      : std_logic_vector(7 downto 0) := (others => '0');
 -- outputs
 signal tx_busy_s    : std_logic;
+signal tx_8bit_s    : std_logic;
 signal tx_out_s     : std_logic;
 signal tx_done_s    : std_logic;
  
@@ -79,6 +82,7 @@ UART_TX_INST : uart_tx
     tx_enable   => tx_enable_s,
     tx_in       => tx_in_s,
     tx_busy     => tx_busy_s,
+    tx_8bit     => tx_8bit_s,
     tx_out      => tx_out_s,
     tx_done     => tx_done_s
     );
@@ -89,10 +93,17 @@ process is
 begin
   -- se
   wait until rising_edge(clk_in_s);
-  tx_in_s     <= "00001110";
+  tx_in_s     <= "11110000";
   tx_enable_s <= '0';
+  wait for 10 us;
   wait until rising_edge(clk_in_s);
   tx_enable_s <= '1';
+  wait for 320 us;
+  tx_enable_s <= '0';
+  wait for 320 us;
+  tx_enable_s <= '1';
+  wait for 320 us;
+  tx_in_s     <= "11110011";
   wait;
    
 end process;
