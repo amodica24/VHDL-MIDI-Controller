@@ -63,11 +63,11 @@ begin
       )
     port map (
       clk_in       => clk_in_s,
-      tx_enable     => tx_enable_s,
-      tx_data   => tx_data,
-      tx_busy => open,
-      tx_start => tx_start_s,
-      tx_done   => tx_done_s
+      tx_enable    => tx_enable_s,
+      tx_data      => tx_data,
+      tx_busy      => open,
+      tx_start     => tx_start_s,
+      tx_done      => tx_done_s
       );
 
   clk_in_s <= not clk_in_s after 50 ns;
@@ -76,7 +76,6 @@ begin
   begin
  
     -- Tell the UART to send a command.
-    wait until rising_edge(clk_in_s);
     wait until rising_edge(clk_in_s);
     tx_enable_s   <= '1';
     tx_data <= X"FF";
