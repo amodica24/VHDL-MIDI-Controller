@@ -19,9 +19,8 @@ architecture rtl of spi_slave_tb is
   signal d_in_s       : std_logic;
   signal CS_s         : std_logic;
   signal d_out_s      : std_logic_vector(7 downto 0);
-   
+
 begin
-  
   spi_slave_INST : spi_slave
     port map (
       clk_in  => clk_in_s,
@@ -30,9 +29,9 @@ begin
       d_out   => d_out_s
       );
      clk_in_s <= not clk_in_s after 50 ns;
-  process is
+  
+process is
   begin
- 
 	wait for 50 ns;
   CS_s <= '0';
 	wait until rising_edge(clk_in_s);
