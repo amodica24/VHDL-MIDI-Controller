@@ -16,32 +16,37 @@
 -- Version/Notes
 -- 1.0 - 2019-04-29 - Initial Version
 -----------------------------------------------------------------------------
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use ieee.numeric_std.all;
 
-Library IEEE;
-Use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.numeric_std.ALL;
-Use work.resources.all;
+entity spi_slave is
+  port ( 
+    clk_in  : in  STD_LOGIC;    -- spi_slave input clock
+    d_in    : in  STD_LOGIC;    -- spi_slave serial d_in input
+    CS      : in  STD_LOGIC;    -- chip select input (active low)
+    d_out   : out STD_LOGIC_VECTOR (7 downto 0)
+  );
+end spi_slave;
 
-entity SPI_slave is
-	port(
-    -- inputs
-		slave_select : IN STD_LOGIC;
-		clk_in       : IN STD_LOGIC; 
-    MOSI_pin     : IN STD_LOGIC; -- master out, slave in
-		d_in         : IN STD_LOGIC_VECTOR(7 downto 0); 
-    -- outputs
-		MISO_pin     : OUT STD_LOGIC; -- master in, slave out
-		d_out        : OUT STD_LOGIC_VECTOR(7 downto 0)
-	);
-END SPI_slave;
+architecture RTL of spi_slave is
+    signal data : STD_LOGIC_VECTOR (7 downto 0);
+begin
   
-  BEGIN
-		process_SPI(clk_in)
-		begin
-			if falling_edge(clk_in) then
-				if (slave_select = '0') then
-        -- slave select must remain low until transmission is complete
-        end if;
-        -- if high, SPI slave forced to IDLE state
-			end if;
-		end process;
+process (clk_in, CS)
+begin
+  if (rising_edge(clk_in)) then  -- rising edge of clk_in
+    if (CS = '0') then             -- spi_slave CS must be selected
+      -- shift serial d_in into data on each rising edge
+      -- of clk_in, MSB first
+      data <= data(6 downto 0) & d_in;
+    end if;
+  end if;
+    
+  if (rising_edge(CS)) then
+   -- update d_outs with new d_in on rising edge of CS
+   d_out <= data;
+  end if;
+
+end process;
+end RTL;
