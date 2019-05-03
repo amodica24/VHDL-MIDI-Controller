@@ -36,7 +36,7 @@ begin
 process (clk_in, CS)
 begin
   if (rising_edge(clk_in)) then  -- rising edge of clk_in
-    if (CS = '0') then             -- spi_slave CS must be selected
+    if (CS = '0') then           -- spi_slave CS must be selected
       -- shift serial d_in into data on each rising edge
       -- of clk_in, MSB first
       data <= data(6 downto 0) & d_in;
