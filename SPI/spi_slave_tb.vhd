@@ -9,7 +9,7 @@ architecture rtl of spi_slave_tb is
   component spi_slave is
     port (
       -- inputs
-	 clk_in  : in  STD_LOGIC;    -- spi_slave input clock
+	   clk_in  : in  STD_LOGIC;    -- spi_slave input clock
      d_in    : in  STD_LOGIC;    -- spi_slave serial d_in input
      CS      : in  STD_LOGIC;    -- chip select input (active low)
      d_out   : out STD_LOGIC_VECTOR (7 downto 0)
