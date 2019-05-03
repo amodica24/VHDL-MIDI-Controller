@@ -35,9 +35,8 @@ begin
   process is
   begin
  
-    -- Tell the UART to send a command
 	wait for 50 ns;
-    CS_s <= '0';
+  CS_s <= '0';
 	wait until rising_edge(clk_in_s);
 	d_in_s <= '1';
 	wait until rising_edge(clk_in_s);
