@@ -15,7 +15,7 @@ architecture rtl of spi_slave_tb is
    );
   end component spi_slave;
   
-  signal clk_in_s     : std_logic                    := '0';
+  signal clk_in_s     : std_logic           := '0';
   signal d_in_s       : std_logic;
   signal CS_s         : std_logic;
   signal d_out_s      : std_logic_vector(7 downto 0);
