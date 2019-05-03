@@ -4,26 +4,24 @@ use ieee.numeric_std.all;
  
 entity spi_slave_tb is
 end spi_slave_tb;
- 
+
 architecture rtl of spi_slave_tb is
-  component spi_slave is
-    port (
-      -- inputs
-	   clk_in  : in  STD_LOGIC;    -- spi_slave input clock
+ component spi_slave is
+  port (
+     -- inputsclk_in  : in  STD_LOGIC;    -- spi_slave input clock
      d_in    : in  STD_LOGIC;    -- spi_slave serial d_in input
      CS      : in  STD_LOGIC;    -- chip select input (active low)
      d_out   : out STD_LOGIC_VECTOR (7 downto 0)
-    );
+   );
   end component spi_slave;
-
+  
   signal clk_in_s     : std_logic                    := '0';
   signal d_in_s       : std_logic;
   signal CS_s         : std_logic;
   signal d_out_s      : std_logic_vector(7 downto 0);
    
 begin
- 
-  -- Instantiate UART transmitter
+  
   spi_slave_INST : spi_slave
     port map (
       clk_in  => clk_in_s,
