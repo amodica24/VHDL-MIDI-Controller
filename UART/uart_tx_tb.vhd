@@ -36,7 +36,7 @@ architecture rtl of uart_tx_tb is
 
 component uart_tx is
   generic (
-    num_clks_per_1_bit : integer := 115   -- Needs to be set correctly
+    num_clks_per_1_bit : integer := 320   -- Needs to be set correctly
     );
   port (
     -- inputs
@@ -91,7 +91,6 @@ clk_in_s <= not clk_in_s after 50 ns;
  
 process is
 begin
-  -- se
   wait until rising_edge(clk_in_s);
   tx_in_s     <= "11110000";
   tx_enable_s <= '0';
