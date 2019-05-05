@@ -6,8 +6,7 @@
 -- Description      :     This entity is a 16-1 multiplexer
 --
 -- Inputs           :     d_in
---                  :     sel     
-
+--                  :     sel
 -- Outputs          :     
 --                  :     d_out
 -----------------------------------------------------------------------------
