@@ -4,11 +4,11 @@
 -----------------------------------------------------------------------------
 -- File         :     clkDivide.vhd
 -- Description  :     This entity is a clock divider to be implemented
---                     with the analog-to-digital converter and multiplexer
+--                    with the analog-to-digital converter and multiplexer
 --
--- Inputs       :     clk_in  - Input for the clock
---              :     clk_rst - Reset for the clock
--- Outputs      :     new_clk - Output clock
+-- Inputs       :     clk_100MHz  - Input 100 MHz clock
+--              :     clk_rst     - Reset for the clock
+-- Outputs      :     clk_1MHz    - Output 1 MHz clock
 -----------------------------------------------------------------------------
 -- Version/Notes
 -- 1.0 - 2019-04-29 - Initial Version
@@ -22,8 +22,8 @@ use IEEE.numeric_std.ALL;
 entity clkDivide is
   port(
     clk_100MHz  : in std_logic;
-    clk_rst     : in std_logic; 
-	  clk_1MHz    : out std_logic
+    clk_rst     : in std_logic;
+    clk_1MHz    : out std_logic
 	);
 end clkDivide;
 
