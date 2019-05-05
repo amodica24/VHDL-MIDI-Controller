@@ -77,4 +77,4 @@ stim_proc: process
   wait for 35 ns;
    
   end process;
-END;
+end;
