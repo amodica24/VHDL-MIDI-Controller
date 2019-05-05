@@ -21,9 +21,9 @@ use IEEE.numeric_std.ALL;
 
 entity clkDivide is
   port(
-    clk_in  : in std_logic;
-    clk_rst : in std_logic; 
-	new_clk : out std_logic
+    clk_100MHz  : in std_logic;
+    clk_rst     : in std_logic; 
+	  clk_1MHz    : out std_logic
 	);
 end clkDivide;
 
@@ -32,19 +32,19 @@ architecture rtl of clkDivide is
   signal clk_count : integer := 0;
   signal div_value : integer := 100;
 begin
-  p1: process (clk_in, clk_rst)
+  p1: process (clk_100MHz, clk_rst)
     begin
       -- 100 MHz / 100 = 1 MHz 
       if (clk_rst = '1') then -- hold the clock during reset
        clk_count <= 0;
        temp_clk  <= '0';
-      elsif (rising_edge(clk_in)) then
-	clk_count <= clk_count + 1;
-	if (clk_count = div_value) then
-	 clk_count <= 0;
-	 temp_clk <= NOT temp_clk;
+      elsif (rising_edge(clk_100MHz)) then
+       clk_count <= clk_count + 1;
+	      if (clk_count = div_value) then
+	       clk_count <= 0;
+	       temp_clk <= NOT temp_clk;
         end if;
        end if;
   end process;
- new_clk <= temp_clk;
+ clk_1MHz <= temp_clk;
 end rtl;
