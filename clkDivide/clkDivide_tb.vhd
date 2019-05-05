@@ -24,8 +24,10 @@ architecture rtl of clkDivide_tb is
 
 component clkDivide
 port(
+	-- inputs
 	clk_100MHz   : in std_logic;
 	clk_rst      : in std_logic;
+  -- output
 	clk_1MHz     : out std_logic
 	);
 end component;
@@ -37,7 +39,7 @@ end component;
 -- inputs
 signal clk_100MHz_s   : std_logic;
 signal clk_rst_s      : std_logic;
--- outputs
+-- output
 signal clk_1MHz_s     :  std_logic;
 
 -- clock period
