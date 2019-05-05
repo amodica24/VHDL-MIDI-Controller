@@ -47,4 +47,4 @@ begin
        end if;
   end process;
  new_clk <= temp_clk;
-end rlt;
+end rtl;
