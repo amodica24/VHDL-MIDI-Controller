@@ -53,11 +53,11 @@ begin
 
 -- clock process
 clk_process : process
-   begin
-      clk_100MHz_s <= '0';
-      wait for clk_period/2;
-      clk_100MHz_s <= '1';
-      wait for clk_period/2;
+  begin
+    clk_100MHz_s <= '0';
+    wait for clk_period/2;
+    clk_100MHz_s <= '1';
+    wait for clk_period/2;
    end process;
 
 -- stimulus process
@@ -65,9 +65,9 @@ clk_process : process
 stim_proc: process
    begin
    clk_rst_s <= '1'; 
-    wait for clk_period; 
-    clk_rst_s <= '0'; 
-    wait; 
-   end process;
+   wait for clk_period; 
+   clk_rst_s <= '0'; 
+   wait; 
+end process;
 
 end;
