@@ -4,7 +4,7 @@
 -----------------------------------------------------------------------------
 -- File         :     clkDivide.vhd
 -- Description  :     This entity is a clock divider to be implemented
---             	      with the analog-to-digital converter and multiplexer
+--                     with the analog-to-digital converter and multiplexer
 --
 -- Inputs       :     clk_in  - Input for the clock
 --              :     clk_rst - Reset for the clock
@@ -21,9 +21,9 @@ use IEEE.numeric_std.ALL;
 
 entity clkDivide is
   port(
-    clk_in  : IN STD_LOGIC;
-		clk_rst : IN STD_LOGIC; 
-		new_clk : OUT STD_LOGIC
+    clk_in  : in std_logic;
+    clk_rst : in std_logic; 
+	new_clk : out std_logic
 	);
 end clkDivide;
 
