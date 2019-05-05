@@ -75,6 +75,5 @@ stim_proc: process
   wait for 5ns;
   assert (d_out_s = '1') report "Output is a 1" severity failure;
   wait for 35 ns;
-   
-  end process;
+ end process;
 end;
