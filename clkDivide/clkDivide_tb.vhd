@@ -1,14 +1,14 @@
 -----------------------------------------------------------------------------
--- Project	:     VHDL MIDI Controller
--- Author  	:     Anthony Modica, Blaine Rieger, Brian Palmigiano
+-- Project      :     VHDL MIDI Controller
+-- Author       :     Anthony Modica, Blaine Rieger, Brian Palmigiano
 -----------------------------------------------------------------------------
--- File		:     clkDivide_tb.vhd
+-- File         :     clkDivide_tb.vhd
 -- Description  :     This entity is a clock divider to be implemented
---             	      with the analog-to-digital converter and multiplexer
--- 		
+--                    with the analog-to-digital converter and multiplexer
+--
 -- Inputs       :     clk_in_s  - Input for the clock
---		:     clk_rst_s - Reset for the clock
--- Outputs	:     new_clk_s - Output clock
+--              :     clk_rst_s - Reset for the clock
+-- Outputs      :     new_clk_s - Output clock
 -----------------------------------------------------------------------------
 -- Version/Notes
 -- 1.0 - 2019-04-29 - Initial Version
@@ -20,7 +20,7 @@ USE IEEE.std_logic_1164.ALL;
 entity clkDivide_tb is
 end clkDivide_tb;
 
-architecture behavior of clkDivide_tb is
+architecture rtl of clkDivide_tb is
 
 component clkDivide
 port(
