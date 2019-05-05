@@ -36,7 +36,7 @@ architecture rtl of uart_tx_tb is
 
 component uart_tx is
   generic (
-    num_clks_per_1_bit : integer := 320   -- Needs to be set correctly
+    num_clks_per_1_bit : integer := 320 
     );
   port (
     -- inputs
