@@ -24,7 +24,7 @@ entity clkDivide is
     clk_100MHz  : in std_logic;
     clk_rst     : in std_logic;
     clk_1MHz    : out std_logic
-	);
+  );
 end clkDivide;
 
 architecture rtl of clkDivide is
@@ -40,11 +40,11 @@ begin
        temp_clk  <= '0';
       elsif (rising_edge(clk_100MHz)) then
        clk_count <= clk_count + 1;
-	      if (clk_count = div_value) then
-	       clk_count <= 0;
-	       temp_clk <= NOT temp_clk;
-        end if;
+	     if (clk_count = div_value) then
+	      clk_count <= 0;
+	      temp_clk <= NOT temp_clk;
        end if;
+      end if;
   end process;
  clk_1MHz <= temp_clk;
 end rtl;
