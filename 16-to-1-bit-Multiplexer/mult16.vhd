@@ -48,6 +48,6 @@ ENTITY mult16 is
        when "1110" => d_out <= d_in(14);
        when "1111" => d_out <= d_in(15);
        when others => d_out <= 'X';
-end case;
-  end process mult_process;
-  end rtl;
+  end case;
+ end process mult_process;
+end rtl;
