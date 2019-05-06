@@ -29,43 +29,43 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity uart_tx is
-generic (
-num_clks_per_1_bit : integer := 320   -- = (10Mhz/31250)
-);
-port (
--- inputs
-clk_in      : in  std_logic;
-tx_enable   : in  std_logic;
-tx_in     : in  std_logic_vector(7 downto 0);
---outputs
-tx_busy     : out std_logic;
-tx_8bit     : out std_logic;
-tx_out    : out std_logic;
-tx_done     : out std_logic
+ generic (
+  num_clks_per_1_bit : integer := 320   -- = (100Mhz/31250)
+ );
+ port (
+ -- inputs
+ clk_in      : in  std_logic;
+ tx_enable   : in  std_logic;
+ tx_in     : in  std_logic_vector(7 downto 0);
+ --outputs
+ tx_busy     : out std_logic;
+ tx_8bit     : out std_logic;
+ tx_out    : out std_logic;
+ tx_done     : out std_logic
 );
 end uart_tx;
 
 architecture RTL of uart_tx is
 
-type tx_states is (
-idle_s,        -- idle state, does not do anything
-start_bit_s,   -- sends a 0 as the MSB bit
-data_s,        -- transfers 8 bits
-stop_bit_s     -- sends a 1 as the last bit
-);
+ type tx_states is (
+  idle_s,        -- idle state, does not do anything
+  start_bit_s,   -- sends a 0 as the MSB bit
+  data_s,        -- transfers 8 bits
+  stop_bit_s     -- sends a 1 as the last bit
+ );
 
--- initialization
-signal state_s     : tx_states;
-signal clk_count   : integer range 0 to num_clks_per_1_bit-1 := 0;
-signal index       : integer range 0 to 7 := 0; 
+ -- initialization
+ signal state_s     : tx_states;
+ signal clk_count   : integer range 0 to num_clks_per_1_bit-1 := 0;
+ signal index       : integer range 0 to 7 := 0; 
 
 begin
 
-p_uart_tx : process (clk_in)
-begin
-if rising_edge(clk_in) then
+ p_uart_tx : process (clk_in)
+ begin
+  if rising_edge(clk_in) then
      
-  case state_s is
+   case state_s is
 
     -- Case 1: Idle state
     -- 'busy' bit = '0'
