@@ -49,7 +49,7 @@ BEGIN
 -- Stimulus process
 stim_proc: process
  begin
-  d_in_s <= "1100 0011 1101 0110";
+  d_in_s <= "1100001111010110";
   sel_s <= "0000";
   
   wait for 5ns;
@@ -71,9 +71,31 @@ stim_proc: process
   assert (d_out_s = '0') report "Output is a 0" severity failure;
   wait for 35 ns;
 	  
-  sel_s <= "0100";
+  sel_s <= "1111";
   wait for 5ns;
   assert (d_out_s = '1') report "Output is a 1" severity failure;
   wait for 35 ns;
+  
+  sel_s <= "1101";
+  wait for 5ns;
+  assert (d_out_s = '0') report "Output is a 1" severity failure;
+  wait for 35 ns;
+      
+  sel_s <= "0111";
+  wait for 5ns;
+  assert (d_out_s = '1') report "Output is a 1" severity failure;
+  wait for 35 ns;
+  
+  sel_s <= "1000";
+  wait for 5ns;
+  assert (d_out_s = '1') report "Output is a 1" severity failure;
+  wait for 35 ns;
+  
+  sel_s <= "1001";
+  wait for 5ns;
+  assert (d_out_s = '1') report "Output is a 1" severity failure;
+  wait for 35 ns;
+  
+  wait;
  end process;
 end;
