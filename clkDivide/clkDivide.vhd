@@ -34,8 +34,8 @@ architecture rtl of clkDivide is
   variable clk_count  : integer; -- keeps track of clock cycles
   variable div_value  : integer; 
    begin
-   div_value := 100;
-    -- 100 MHz / 100 = 1 MHz 
+   div_value := 50;
+ 
     if (clk_rst = '1') then -- hold the clock during reset
      clk_count := 0;
      temp_clk  <= '0';
