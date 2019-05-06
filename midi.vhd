@@ -17,8 +17,8 @@ use gate_lib.resources.all;
 entity midi is
 
   generic (
-	 -------- uart_tx -------
-	 tx_num_clks_per_1_bit : integer := 320   -- = (10Mhz/31250)
+	-------- uart_tx -------
+	tx_num_clks_per_1_bit : integer := 320   -- = (10Mhz/31250)
   );
 
   port (
