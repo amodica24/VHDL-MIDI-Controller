@@ -2,7 +2,7 @@
 -- Project      :     VHDL MIDI Controller
 -- Author       :     Anthony Modica, Blaine Rieger, Brian Palmigiano
 -----------------------------------------------------------------------------
--- File         :     midi.vhd
+-- File         :     midi_tb.vhd
 -- Description  :     
 -----------------------------------------------------------------------------
 -- Version/Notes
