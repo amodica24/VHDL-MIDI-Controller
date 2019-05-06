@@ -22,54 +22,54 @@ end clkDivide_tb;
 
 architecture rtl of clkDivide_tb is
 
-component clkDivide
-port(
-	-- inputs
-	clk_100MHz   : in std_logic;
-	clk_rst      : in std_logic;
+ component clkDivide
+  port(
+  -- inputs
+  clk_100MHz   : in std_logic;
+  clk_rst      : in std_logic;
   -- output
-	clk_1MHz     : out std_logic
-	);
-end component;
+  clk_1MHz     : out std_logic
+  );
+ end component;
 
----------------------------------
--- signals
----------------------------------
+ ---------------------------------
+ -- signals
+ ---------------------------------
 
--- inputs
-signal clk_100MHz_s   : std_logic;
-signal clk_rst_s      : std_logic;
--- output
-signal clk_1MHz_s     :  std_logic;
+ -- inputs
+ signal clk_100MHz_s   : std_logic;
+ signal clk_rst_s      : std_logic;
+ -- output
+ signal clk_1MHz_s     :  std_logic;
 
--- clock period
-constant clk_period : time := 10 ns; -- insert the clk period being used
+ -- clock period
+ constant clk_period : time := 10 ns;
 
-begin
+ begin
     -- Instantiate the Unit Under Test (UUT)
   uut: clkDivide PORT MAP (
-    clk_100MHz => clk_100MHz_s,
-    clk_rst => clk_rst_s,
-    clk_1MHz => clk_1MHz_s
-   );
+   clk_100MHz => clk_100MHz_s,
+   clk_rst => clk_rst_s,
+   clk_1MHz => clk_1MHz_s
+  );
 
--- clock process
-clk_process : process
+ -- clock process
+ clk_process : process
   begin
-    clk_100MHz_s <= '0';
-    wait for clk_period/2;
-    clk_100MHz_s <= '1';
-    wait for clk_period/2;
-   end process;
+   clk_100MHz_s <= '0';
+   wait for clk_period/2;
+   clk_100MHz_s <= '1';
+   wait for clk_period/2;
+ end process;
 
--- stimulus process
--- test each case for the reset
-stim_proc: process
-   begin
+ -- stimulus process
+ -- test each case for the reset
+ stim_proc: process
+  begin
    clk_rst_s <= '1'; 
    wait for clk_period; 
    clk_rst_s <= '0'; 
    wait; 
-end process;
-
+ end process;
+ 
 end;
